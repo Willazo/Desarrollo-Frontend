@@ -1,1 +1,92 @@
-hola
+<!DOCTYPE html> <!-- puede estar en minúscula y en mayúscula -->
+<html lang="es"> <!-- ponemos que nuestro documento estará en español, solo puedo tener un idioma -->
+<!-- si queremos varios idiomas debemos dividirlos en dominios o subdominios, NUNCA en subcarpetas -->
+<!-- porque google indexa sitios por idiomas por dominios o subdominios, mejor comprar un dominio por idioma -->
+<head>
+<meta charset="utf-8" /> <!-- slash de cierre, es buena práctica el colocarlos -->
+	<title>Aplicación Front-End: Red social</title>
+	<link rel="stylesheet" href="css/appsocial.css" /> <!-- el type="text/css" podría ponerse pero por defecto solo existe un estilo de css, por lo que es redundante ponerlo, buena práctica -->
+</head>
+<body><!-- lo principal es usar las etiquetas semánticas, header, footer, section, articles...etc -->
+<!-- los div son divisiones, es decir, si en una cabecera tenemos un titulo, una imagen, un boton y algún otro elemento, esos espacios arriba o abajo, derecha o izquierda, son divisiones visuales, ahí se utilizan los div -->
+<header>
+	<div class="logo">
+		<img src="imagenes/logo.png" alt="appsocial" /> <!-- se puede hacer con la etiqueta figure, pero al ser parte de una cabecera no es tanto el significado semántico que adquiere, por lo que con img estaría correcto -->
+	</div>
+	<div class="titular">
+		<h1 class="titulo">
+			Appsocial: Aplicación de comunicación
+		</h1>
+		<div>
+			<a class="filtro" href="#">
+				Responsive Design
+			</a>
+			<a class="publicar" href="#">
+				Publicar
+			</a>
+		</div>
+	</div>
+	<div class="usuario">
+		<figure class="avatar">
+			<img src="imagenes/avatar.jpg" alt="alfredoll" />
+		</figure>
+		<a class="flecha" href="#">
+			X
+		</a>
+	</div>
+</header>
+<nav>
+	<ul class="menu">
+		<li><a href="#">Python</a></li>
+		<li><a href="#">HTML5</a></li>
+		<li><a href="#">Javascript</a></li>
+		<li><a href="#">Django</a></li>
+		<li><a href="#">CSS3</a></li>
+	</ul>
+</nav>
+<!-- en la gran mayoria de diseños web no es necesario un "container" solo en los que se necesite establecer un ancho de página y se quede fijo una vez llegado a ese ancho -->
+<section class="posts">
+	<article class="post">
+		<div class="descripcion">
+			<figure class="imagen">
+				<img src="imagenes/foto.jpg" />
+			</figure>
+			<div class="detalles">
+				<h2 class="titulo">
+					Buenas prácticas para el uso de Git y GitHub
+				</h2>
+				<p class="autor">
+					por <a href="#">Alfredo López</a>
+				</p>
+				<a class="tag" href="#">CSS3</a>
+				<p class="fecha">hace <strong>20</strong> min</p>
+			</div>
+		</div>
+		<div class="acciones">
+			<div class="votos">
+				<a class="up" href="#">U</a>
+				<span class="total">156</span>
+				<a class="down" href="#">D</a>
+			</div>
+			<div class="datos">
+				<a class="comentarios" href="#">
+					10
+				</a>
+				<a class="estrella" href="#">
+					*
+				</a>
+			</div>
+		</div>
+	</article>
+</section>
+<footer>
+	<!-- CSS orientada a objetos, en vez de usar "id", usamos "clases" para tratar cada elemento como una objeto y cada clase sean sus propiedades, los "id" los reservamos paramodificar el objeto por javascript -->
+	<h3>
+		<strong>Powered by Alfredoll </strong>
+		<span class="creado">
+			2016
+		</span>
+	</h3>
+</footer>
+</body>
+</html>
