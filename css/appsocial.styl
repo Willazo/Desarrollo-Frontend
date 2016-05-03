@@ -1,0 +1,48 @@
+/*Permite uso de variables*/
+/*leonidas = #EE22DD*/
+gris_oscuro = #444
+azul = #22BCE0
+/* no es necesario añadir puntos, puntos y coma, dos puntos ni llaves, lo interpreta*/
+body
+	/*background leonidas*/
+	background #E8E8E8
+	color gris_oscuro
+	font-family Arial
+	font-size 16px
+
+header
+	background gris_oscuro
+	color white
+	/* en lo que se refiere a márgenes es mejor usar "em" que "px"*/
+	/* porque el tamaño se vuelve relativo a la fuente, a que sea relativo a un número arbitrario como px*/
+	padding 0.5em /* 1em equivale al tamaño d la fuente más cercana, en este un tamaño de 16px */
+
+	.logo
+		border-right 1px solid azul
+		width 60px /* le añadimos un ancho al logo, para que justo después añada la línea azul a continuación y no en el límite del borde derecho*/
+		img
+			width 52px
+
+	.titular
+		margin 0 80px 0 70px /*margen superior 0, margen de la derecha 80px, margen de abajo 0, y el ancho 70px */
+		/* el 70 es porque el logo ocupa 60px y si yo quiero que el texto esté un poco más separado, por ejemplo 10px */
+		/*pues hago la suma 60 + 10 son 70px será el espacio donde se ubicará el texto */
+		.titulo
+			font-size 18px
+			font-weight normal
+			margin 0 /*margen superior 0 */
+			padding 0 
+			
+	.usuario
+		.avatar
+			img
+				width 50px
+				border-radius 50%
+nav
+	background azul
+
+.left
+	float left
+
+.right
+	float right
