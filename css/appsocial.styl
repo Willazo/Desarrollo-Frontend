@@ -2,6 +2,7 @@
 /*leonidas = #EE22DD*/
 gris_oscuro = #444
 azul = #22BCE0
+naranja = #DD4F24
 /* no es necesario añadir puntos, puntos y coma, dos puntos ni llaves, lo interpreta*/
 body
 	/*background leonidas*/
@@ -12,21 +13,44 @@ body
 
 header
 	background gris_oscuro
+	box-shadow 0 5px 0 rgba(0,0,0,0.2) /* x, y, difuminación, creación de color en hexadecimal(color negro-> 0,0,0, y 0.2 de transparencia)*/
 	color white
+	overflow hidden /* te añade una caja debajo para cuando el header se desconfigura al redimensionar la página*/
 	/* en lo que se refiere a márgenes es mejor usar "em" que "px"*/
 	/* porque el tamaño se vuelve relativo a la fuente, a que sea relativo a un número arbitrario como px*/
 	padding 0.5em /* 1em equivale al tamaño d la fuente más cercana, en este un tamaño de 16px */
+	position relative
+	z-index 1 /* para que se vea la sombra de la cabecera*/
 
 	.logo
 		border-right 1px solid azul
+		float left
 		width 60px /* le añadimos un ancho al logo, para que justo después añada la línea azul a continuación y no en el límite del borde derecho*/
 		img
 			width 52px
 
 	.titular
-		margin 0 80px 0 70px /*margen superior 0, margen de la derecha 80px, margen de abajo 0, y el ancho 70px */
+		margin 0 60px 0 70px /*margen superior 0, margen de la derecha 80px, margen de abajo 0, y el ancho 70px */
 		/* el 70 es porque el logo ocupa 60px y si yo quiero que el texto esté un poco más separado, por ejemplo 10px */
 		/*pues hago la suma 60 + 10 son 70px será el espacio donde se ubicará el texto */
+		.filtro
+			color azul
+			font-size 14px
+			font-style italic
+			font-weight bold
+			text-decoration none /* para que no haya subrayado*/
+		
+		.publicar
+			background naranja
+			color white
+			float right
+			font-style italic
+			margin -5px 1em 0 0
+			padding 0.2em 0.5em /*0.2 arriba y abajo y 0.5 hacia los lados*/
+			text-decoration none
+			text-shadow 1px 1px 0px black /*1er parám cuanto se va a movel la sombra en x, 2do param cuanto en y, */
+			/*3er param cuanto es la difuminación de la sombra, y 4º color */
+
 		.titulo
 			font-size 18px
 			font-weight normal
@@ -34,15 +58,65 @@ header
 			padding 0 
 			
 	.usuario
+		position absolute
+		right 10px
+		top 10px
 		.avatar
+			margin 0 1em 0 0
+			position relative
+			z-index 2 /* sirve para enviar el elemento hacia capas más atrás */
 			img
 				width 50px
 				border-radius 50%
+
+		.flecha
+			background naranja
+			color white
+			display block
+			padding 3px
+			position absolute
+			right 0
+			top 15px 
+			text-align right
+			width 50%
+			z-index 0 /* de momento no sé si esto sirve*/
 nav
 	background azul
+	border-left 15px solid white
+	position relative /*para dibujar flecha blanca*/
 
+	&:before/*----para dibujar flecha blanca----*/
+		border-bottom 20px solid transparent
+		border-left 7px solid white
+		border-top 20px solid transparent
+		content ""
+		left 0
+		position absolute
+		top 0
+		/*---------------------------------------*/
+
+	.menu
+		height 40px /* el alto de la caja*/
+		line-height 40px /*el alto de las lineas de texto es de 40 px*/
+		margin 0 /* para los espacios entre bloques que aparecen y pueden resultar confusos de por qué aparecen*/
+		/* la solución es añadir al contenedor margin 0 */
+		padding 0
+		overflow-x auto /*añades el elemento dentro del contenedor en x*/
+		white-space nowrap
+
+		li
+			display inline-block /* alinea el listado en un mismo bloque en horizontal */
+
+			a
+				color white
+				display block
+				margin 0 0.5em
+				padding 0 0.2em /* esto en firefox le quita el scroll lateral, pero en chrome sigue aún así*/
+				text-decoration none
+
+/*
 .left
 	float left
 
 .right
-	float right
+	float right*/
