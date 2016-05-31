@@ -93,7 +93,7 @@ header .titular .titulo {
   padding: 0;
 }
 header .usuario {
-  position: absolute;
+  position: absolute /*fixed funciona igual pero cuando bajemos el scroll también bajará*/;
   right: 10px;
   top: 10px;
 }
@@ -273,6 +273,9 @@ nav .menu li a {
     display: inline-block;
     width: 46%;
     vertical-align: top;
+/*&:nth-child(3n)*/
+/* te coge los impares cada 3*/
+/*background green*/
   }
   .posts .post:nth-child(odd) {
     margin-right: 2%;

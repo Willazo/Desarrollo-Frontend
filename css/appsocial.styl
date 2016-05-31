@@ -100,7 +100,7 @@ header
 			padding 0 
 			
 	.usuario
-		position absolute
+		position absolute /*fixed funciona igual pero cuando bajemos el scroll también bajará*/
 		right 10px
 		top 10px
 		.avatar
@@ -282,6 +282,8 @@ nav
 			&:nth-child(odd) /* para solo dar características a elementos impares, o seala columna 1*/
 			/* even significa par*/
 				margin-right 2%
+			/*&:nth-child(3n)*/ /* te coge los impares cada 3*/
+				/*background green*/
 /*
 .left
 	float left
