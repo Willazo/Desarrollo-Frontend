@@ -8,6 +8,7 @@
 	<title>Aplicación Front-End: Red social</title>
 	<link rel="stylesheet" href="css/normalize.css" /> <!-- tiene que ir encima del de nuestro código normal, sirve para resetear todos los estilos -->
 	<link rel="stylesheet" href="css/appsocial.css" /> <!-- el type="text/css" podría ponerse pero por defecto solo existe un estilo de css, por lo que es redundante ponerlo, buena práctica -->
+	<script src="jquery-2.2.4.min.js"></script> <!--añadimos jquery-->
 </head>
 <body><!-- lo principal es usar las etiquetas semánticas, header, footer, section, articles...etc -->
 <!-- los div son divisiones, es decir, si en una cabecera tenemos un titulo, una imagen, un boton y algún otro elemento, esos espacios arriba o abajo, derecha o izquierda, son divisiones visuales, ahí se utilizan los div -->
@@ -21,11 +22,16 @@
 		</h1>
 		<div>
 			<a class="filtro" href="#">
-				Responsive Design
+				Responsive Design and Stylus
 			</a>
 			<a class="publicar" href="#">
 				Publicar
 			</a>
+		</div>
+		<div>
+			<a href="#12" class="sizer">A</a>
+			<a href="#16" class="sizer">A</a>
+			<a href="#22" class="sizer">A</a>
 		</div>
 	</div>
 	<div class="usuario">
@@ -46,6 +52,12 @@
 		<li><a href="#">CSS3</a></li>
 	</ul>
 </nav>
+<form action="">
+	<p><label for="titulo">Título</label><input placeholder="Ingrese el titulo" id="titulo" type="text" name="titulo"></p>
+	<p><label for="autor">Autor</label><input id="autor" type="text" name="autor"></p>
+	<p><label for="tag">Tag</label><input id="tag" type="text" name="tag"></p>
+	<input value="publicar" type="submit">
+</form>
 <!-- en la gran mayoria de diseños web no es necesario un "container" solo en los que se necesite establecer un ancho de página y se quede fijo una vez llegado a ese ancho -->
 <section class="posts">
 	<article class="post">
@@ -67,7 +79,7 @@
 		<div class="acciones">
 			<div class="votos">
 				<a class="up" href="#"></a>
-				<span class="total">156</span>
+				<span class="total">80</span>
 				<a class="down" href="#"></a>
 			</div>
 			<div class="datos">
@@ -131,7 +143,7 @@
 		<div class="acciones">
 			<div class="votos">
 				<a class="up" href="#"></a>
-				<span class="total">156</span>
+				<span class="total">6</span>
 				<a class="down" href="#"></a>
 			</div>
 			<div class="datos">
@@ -163,7 +175,7 @@
 		<div class="acciones">
 			<div class="votos">
 				<a class="up" href="#"></a>
-				<span class="total">156</span>
+				<span class="total">24</span>
 				<a class="down" href="#"></a>
 			</div>
 			<div class="datos">
@@ -195,7 +207,7 @@
 		<div class="acciones">
 			<div class="votos">
 				<a class="up" href="#"></a>
-				<span class="total">156</span>
+				<span class="total">154</span>
 				<a class="down" href="#"></a>
 			</div>
 			<div class="datos">
@@ -227,7 +239,7 @@
 		<div class="acciones">
 			<div class="votos">
 				<a class="up" href="#"></a>
-				<span class="total">156</span>
+				<span class="total">16</span>
 				<a class="down" href="#"></a>
 			</div>
 			<div class="datos">
@@ -250,5 +262,167 @@
 		</span>
 	</h3>
 </footer>
+<script>
+$(function(){
+	$('.publicar').on('click', mostrarFormulario);
+
+	function mostrarFormulario(){
+		//$('form').css('display', 'block'); //cambiamos el display none, por display block
+		//$('form').slideDown(); //efecto de jquery
+		$('form').slideToggle(); //efecto que muestra y oculta el formulario
+	}
+	$('form').on('submit', procesarFormulario);
+	function procesarFormulario(ev){
+// si queremos capturarun evento, necesitamos un parámetro
+		ev.preventDefault(); //evitamos que al darle al boton recargue la página
+		var titulo = $('input[name="titulo"]').val();
+		var autor = $('input[name="autor"]').val();
+		var tag = $('input[name="tag"]').val();
+
+//finalizamos cada linea con un espacio y un / para que no haya ningún error al ejecutarlo. Es una de las maneras de añadir código dentro de una variable sin problemas.
+		var template = '<article class="post"> \
+			<div class="descripcion"> \
+				<figure class="imagen"> \
+					<img src="imagenes/foto.jpg" /> \
+				</figure> \
+				<div class="detalles"> \
+					<h2 class="titulo"> \
+						'+titulo+' \
+					</h2> \
+					<p class="autor"> \
+						por <a href="#">'+autor+'</a> \
+					</p> \
+					<a class="tag" href="#">'+tag+'</a> \
+					<p class="fecha">hace <strong>20</strong> min</p> \
+				</div> \
+			</div> \
+			<div class="acciones"> \
+				<div class="votos"> \
+					<a class="up" href="#"></a> \
+					<span class="total">0</span> \
+					<a class="down" href="#"></a> \
+				</div> \
+				<div class="datos"> \
+					<a class="comentarios" href="#"> \
+						0 \
+					</a> \
+					<a class="estrella" href="#"> \
+						* \
+					</a> \
+				</div> \
+			</div> \
+		</article>';
+//toma esta cadena texto y crea todos los elementos HTML necesarios y se lo agrega al elemento post en jquery.
+		$('.posts').prepend($(template).fadeIn(function()
+		{
+			$(this).css('display', 'inline-block');
+			//el this hace referencia al elemento de la función, CREO que en este caso al contenido de template.Esto lo hacemos para que no haya problemas al ubicar el post al crearlo y no se quede apartado del resto de posts.
+		})); 
+		$('input[type=text]').val('');//elimino los textos de los campos después de enviar los datos.
+		$('form').slideUp(); //una vez se haya enviado el post y se borren los textos de los campos, subo el formulario con este efecto.
+
+	}
+
+	function crearSize(pixels) {
+		return function() {
+			$('body').css('font-size', pixels+'px')
+		}
+	}
+
+// tiene dos parámetros el indice y el elemento que esun link
+	$('.sizer').each(function(i, link){
+		//eliminamos el primer caracter del href, que viene a ser la #
+		var pixels = $(link).prop('hash').substring(1);
+		// para usar el debugger pones -> debugger;
+		$(link)
+			.css('font-size', pixels+'px')
+			.on('click', crearSize(pixels));
+			//con esto hago que el body se redimensione al clickar 
+			//en el link con ese tamaño e pixels.
+	});
+
+	function crearContador(valorInicial) {
+		var contador = valorInicial || 0;
+		return{
+			up : function(){
+				return ++contador;
+			},
+			down : function(){
+				return --contador;
+			}
+		};
+	};
+
+	$('.total').each(function(i, elem) {
+		var contTotal = crearContador(elem.innerHTML);
+		$(elem)
+			.siblings('.up') 
+				.on('click', function(ev){
+					ev.preventDefault();
+					$(elem).html(contTotal.up());
+				})
+			.siblings('.down')
+				.on('click', function(ev){
+					ev.preventDefault();
+					$(elem).html(contTotal.down());
+		});
+			//le pido el hermano o el elemento que está al mismo nivel
+	});
+});
+/*
+function darBienvenida(){
+	alert("Bienvenido!");
+}
+function hacerAlgoImportante(){
+	console.log("Estoy haciendo algo"); 
+}*/
+/* sino decimos nada en los parámetros, es la manera corta*/
+//$(function(){
+	/*a la clase publicar del css obtengo su elemento 0*/
+	/*$('.publicar')
+		.on('click', darBienvenida)
+		.on('click', function() {
+		console.log("Me hicieron click");
+	})
+	$(window)
+		.on('load', hacerAlgoImportante);
+		$('.publicar').off('click', darBienvenida); //cuentas el número de clicks
+});*/
+
+/*una manera para disparar o cargar todo de una vez*/
+/*$(document)on.('ready', function(){
+	$(window)
+	.on('load', darBienvenida)
+	.on('load', hacerAlgoImportante);
+});
+*/
+/* en jquery se haria de la siguiente forma, más sencillo el código que en javascript*/
+/*$(window)
+	.on('load', darBienvenida)
+	.on('load', hacerAlgoImportante);
+*/
+/* esto seria en javascript */
+/* en IE se pone un 'on' delante*/
+/*
+function anadirAlgo(obj, evento, funcion){
+	if(obj.addEventListener) {
+		obj.addEventListener(evento, funcion);
+	} else {
+		obj.attachEvent('on'+evento, funcion); 
+	}
+}
+anadirAlgo(window, 'load', darBienvenida);
+anadirAlgo(window, 'load', hacerAlgoImportante);
+*/
+
+</script>
+
+<!-- TEORIA -->
+<!-- Closures -->
+<!--
+- Las funciones generan un contexto al momento de ser utilizadas.
+
+
+-->
 </body>
 </html>
