@@ -368,7 +368,15 @@ $(function(){
 		});
 			//le pido el hermano o el elemento que está al mismo nivel
 	});
+	 //ejemplo para cambiar un elemento con un que acabamos de crear.
+	$('.posts').on('click', '.post', function(){
+		$(this).css({
+			'background' : 'red'
+		});
+
+	});
 });
+
 /*
 function darBienvenida(){
 	alert("Bienvenido!");
@@ -422,6 +430,7 @@ anadirAlgo(window, 'load', hacerAlgoImportante);
 <!--
 - Las funciones generan un contexto al momento de ser utilizadas.
 
+Existe la libreria localscroll y scrolltop y te sirve para hacer el efecto de scroll con botones
 
 -->
 </body>
